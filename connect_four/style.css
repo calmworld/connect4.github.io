@@ -1,16 +1,19 @@
 #title {
-    align-items: center;
-    justify-content: center;
     color: teal;
     text-align: center
 }
 
 body {
-    background-color: rgb(0, 0, 0);
+    background-color: thistle;
 }
 
 #container {
-    background-color: darkcyan;
+    background-color: black;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+    display: inline-block;
+    
 }
 
 .square {
@@ -26,14 +29,14 @@ body {
 }
 
 .border-bottom-left{
-    border-bottom: 1px solid rgb(255, 255, 255);
-    border-left: 1px solid rgb(255, 255, 255);
+    border-bottom: 2px solid teal;
+    border-left: 2px solid teal;
     
 }
 
 .border-top-right {
-    border-top: 1px solid rgb(255, 255, 255);
-    border-right: 1px solid rgb(255, 255, 255);
+    border-top: 1px solid thistle;
+    border-right: 1px solid thistle;
     
     
 }
