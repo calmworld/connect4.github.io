@@ -60,6 +60,37 @@ $(() => {
         checkDraw();
     }
 
+    // //declare check row direction function
+    // const rowDirection = (cell1, cell2, cell3, cell4) => {
+    //     if (cell1 && cell1 == cell2 && cell1 == cell3 && cell2 == cell4) {
+    //         showModal (cell1 + ' wins!');
+    //         gameOver = true;
+    //     }
+    // }
+
+    //declare check draw function
+    const checkDraw = () => {
+        //loop through rows and columns to see if a row of 4 matches
+        for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < columns; x++) {
+                //if there are no full grids, then the board is not full yet
+                if (!grid[y][x]) {
+                    return;
+                }
+            }
+        }
+        //if player hasn't been redirected to game board, it means all grids are full
+        showModal('Tie game!');
+        //set gameover to true;
+        gameOver = true;
+    }
+
+    //declare modal function
+    showModal = (message) => {
+        $('#modal-textbox').text(message);
+        $('#modal').css('display', 'flex');
+    }
+
 
     //draw game grid as array of arrays
     const grid = [
@@ -71,6 +102,8 @@ $(() => {
         [null, null, null, null, null, null, null]
     ]
 
+    let currentPlayer = 'red';
+    let gameOver = 'false';
 
     //create a grid using jquery
 
