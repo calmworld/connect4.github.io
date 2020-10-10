@@ -60,10 +60,21 @@ $(() => {
         checkDraw();
     }
 
-//create a grid using jquery
+
+    //draw game grid as array of arrays
+    const grid = [
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null]
+    ]
 
 
-for (let y = 0; y < rows; y++) {
+    //create a grid using jquery
+
+    for (let y = 0; y < rows; y++) {
     const $row = $('<div>').addClass('row');
     for (let x = 0; x < columns; x++) {
         const $col = $('<div>').addClass('square');
@@ -79,7 +90,7 @@ for (let y = 0; y < rows; y++) {
     }
     $('#container').append($row)
 
-}
+    }
 
 
 
