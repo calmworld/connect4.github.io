@@ -19,11 +19,11 @@ $(() => {
         }
 
         //assign text to currentPlayer
-        $square.text = currentPlayer;
+        //$square.text = currentPlayer;
         //assign grid array to current player
         grid[rows][columns] = currentPlayer;
         //switch player every turn, start game with red player
-        currentPlayer = (currentPlayer == 'red') ? 'blue' : 'red';
+        // currentPlayer = (currentPlayer == 'red') ? 'blue' : 'red';
 
         //make a call to check winner function
         checkWinner();
@@ -111,26 +111,29 @@ $(() => {
     for (let y = 0; y < rows; y++) {
         const $row = $('<div>').addClass('row');
         for (let x = 0; x < columns; x++) {
-            const $col = $('<div>').addClass('square');
+            const $square = $('<div>').addClass('square');
+            $square.text(currentPlayer);
+            currentPlayer = (currentPlayer == 'red') ? 'blue' : 'red';
             //add borders to column
             if (columns > 0) {
-                $col.addClass('border-bottom-left');
+                $square.addClass('border-bottom-left');
             }
             if (rows > 0) {
-                $col.addClass('border-top-right');
+                $square.addClass('border-top-right');
             }
 
-            $col.on('click', (event) => {
+            $square.on('click', (event) => {
                 console.log('stop clicking me');
                 startGame($(event.currentTarget), columns, rows);
             });
 
-            $row.append($col);
+            $row.append($square);
         }
     $('#container').append($row)
     }
-    
+
     $('#reset').on('click', () => {
-        $('#reset').html('<a href="index.html"></a>');
+        startGame();
+        //$('#reset').html('<a href="index.html"></a>');
     })
 })
