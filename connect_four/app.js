@@ -23,3 +23,10 @@ for (let y = 0; y < rows; y++) {
     $('#container').append($row)
 
 }
+
+
+$(() => {
+    $('#reset').on(click, () => {
+        $('#reset').html('<a href="index.html"></a>');
+    })
+})
