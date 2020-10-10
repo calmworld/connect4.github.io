@@ -12,6 +12,7 @@ body {
     align-content: center;
     text-align: center;
     display: inline-block;
+    color: red;
 }
 
 .square {
@@ -24,7 +25,10 @@ body {
     font-size: 50px;
     cursor: pointer;
     border-radius: 50%;
-    color: red;
+}
+
+.row {
+    display: flex;
 }
 
 .border-bottom-left{
@@ -40,6 +44,3 @@ body {
     
 }
 
-.row {
-    display: flex;
-}

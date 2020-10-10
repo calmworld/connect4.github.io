@@ -13,7 +13,7 @@ $(() => {
 
     //start game by checking for end of game case
     //it will take 3 parameters a div $square, a column and a row
-    const startGame= ($square, rows, columns) => {
+    const startGame= ($square, columns, rows) => {
         if (gameOver || $square.text()) {
             return;
         }
@@ -60,19 +60,19 @@ $(() => {
         checkDraw();
     }
 
-    // //declare check row direction function
-    // const rowDirection = (cell1, cell2, cell3, cell4) => {
-    //     if (cell1 && cell1 == cell2 && cell1 == cell3 && cell2 == cell4) {
-    //         showModal (cell1 + ' wins!');
-    //         gameOver = true;
-    //     }
-    // }
+    //declare check row direction function
+    const rowDirection = (cell1, cell2, cell3, cell4) => {
+        if (cell1 && cell1 == cell2 && cell1 == cell3 && cell2 == cell4) {
+            showModal (cell1 + ' wins!');
+            gameOver = true;
+        }
+    }
 
     //declare check draw function
     const checkDraw = () => {
         //loop through rows and columns to see if a row of 4 matches
-        for (let y = 0; y < rows; y++) {
-            for (let x = 0; x < columns; x++) {
+        for (let y = 0; y < 4; y++) {
+            for (let x = 0; x < 4; x++) {
                 //if there are no full grids, then the board is not full yet
                 if (!grid[y][x]) {
                     return;
@@ -107,26 +107,29 @@ $(() => {
 
     //create a grid using jquery
 
+    
     for (let y = 0; y < rows; y++) {
-    const $row = $('<div>').addClass('row');
-    for (let x = 0; x < columns; x++) {
-        const $col = $('<div>').addClass('square');
+        const $row = $('<div>').addClass('row');
+        for (let x = 0; x < columns; x++) {
+            const $col = $('<div>').addClass('square');
+            //add borders to column
+            if (columns > 0) {
+                $col.addClass('border-bottom-left');
+            }
+            if (rows > 0) {
+                $col.addClass('border-top-right');
+            }
 
-        //add borders to column
-        if (columns > 0) {
-            $col.addClass('border-bottom-left');
+            $col.on('click', (event) => {
+                console.log('stop clicking me');
+                startGame($(event.currentTarget), columns, rows);
+            });
+
+            $row.append($col);
         }
-        if (rows > 0) {
-            $col.addClass('border-top-right');
-        }
-        $row.append($col);
-    }
     $('#container').append($row)
-
     }
-
-
-
+    
     $('#reset').on('click', () => {
         $('#reset').html('<a href="index.html"></a>');
     })
