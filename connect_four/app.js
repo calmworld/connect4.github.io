@@ -1,5 +1,5 @@
 //console.log('i\'m connected');
-//organization layout is inspired from class work
+//organization layout is inspired from class work 
 //inserting animations is from animista.net
 //learned how to make a circle through w3schools.com
 
@@ -70,7 +70,8 @@ $(() => {
 
     //declare check row direction function
     const rowDirection = (cell1, cell2, cell3, cell4) => {
-        if (cell1 && cell1 == cell2 && cell1 == cell3 && cell2 == cell4) {
+        // if (cell1 && cell1 == cell2 && cell1 == cell3 && cell2 == cell4) {
+        if (cell1 == cell2 && cell1 === cell3 && cell1 === cell4) {
             showModal (cell1 + ' wins!');
             gameOver = true;
         }
@@ -111,6 +112,7 @@ $(() => {
     ]
 
     let currentPlayer = $playerToken;
+    console.log(currentPlayer);
     let gameOver = 'false';
 
     //create a grid using jquery
@@ -124,10 +126,12 @@ $(() => {
             currentPlayer = (currentPlayer == $playerToken) ? $pcToken : $playerToken;
             //add borders to column
             if (columns > 0) {
-                $square.addClass('border-bottom-left');
+                //$square.addClass('border-bottom-left');
+                $square.addClass('border');
             }
             if (rows > 0) {
-                $square.addClass('border-top-right');
+                //$square.addClass('border-top-right');
+                $square.addClass('border');
             }
 
             $square.on('click', (event) => {
@@ -135,12 +139,12 @@ $(() => {
                 startGame($(event.currentTarget), columns, rows);
             });
             $square.on('click', (event) => {
-                currentPlayer;
+                $(event.currentTarget) == currentPlayer;
             })
 
             $row.append($square);
         }
-    $('#container').append($row)
+    $('#container').append($row);
     }
 
     $('#reset').on('click', () => {

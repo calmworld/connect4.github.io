@@ -8,11 +8,16 @@ body {
 }
 
 #container {
-    background-color: black;
-    align-content: center;
-    text-align: center;
-    display: inline-block;
-    color: red;
+    background-color: lightcoral;
+    /* align-content: center; */
+    /* text-align: center;
+    display: inline-block; */
+    /* width: auto;
+    height: auto; */
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border: 30px solid lightcoral;
 }
 
 .square {
@@ -22,25 +27,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 50px;
     cursor: pointer;
     border-radius: 50%;
+    background-color: thistle;
 }
 
 .row {
     display: flex;
 }
 
-.border-bottom-left{
-    border-bottom: 2px solid teal;
-    border-left: 2px solid teal;
-    
-}
-
-.border-top-right {
-    border-top: 1px solid thistle;
-    border-right: 1px solid thistle;
-    
+.border {
+    border: 2px solid teal;
 }
 
 #modal {
