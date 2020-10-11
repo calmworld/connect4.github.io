@@ -13,11 +13,11 @@ $(() => {
 
     let columns = 7; //x-axis
 
-    let $playerToken = $('<span>').addClass('slide-in-top');
-    $playerToken.css('color', 'red');
+    // let $playerToken = $('<span>').addClass('slide-in-top');
+    // $playerToken.css('color', 'red');
 
-    let $pcToken = $('<span>').addClass('slide-in-top');
-    $pcToken.css('color', 'blue');
+    // let $pcToken = $('<span>').addClass('slide-in-top');
+    // $pcToken.css('color', 'blue');
 
     //start game by checking for end of game case
     //it will take 3 parameters a div $square, a column and a row
@@ -27,13 +27,14 @@ $(() => {
         }
 
         //assign text to currentPlayer
-        //$square.text = currentPlayer;
+        $square.text = currentPlayer;
         //assign grid array to current player
         grid[rows][columns] = currentPlayer;
         //switch player every turn, start game with red player
-        // currentPlayer = (currentPlayer == 'red') ? 'blue' : 'red';
-        $square.text(currentPlayer);
-        currentPlayer = (currentPlayer == $playerToken) ? $pcToken : $playerToken;
+        currentPlayer = (currentPlayer == 'red') ? 'blue' : 'red';
+
+        // $square.text(currentPlayer);
+        // currentPlayer = (currentPlayer == $playerToken) ? $pcToken : $playerToken;
 
         //make a call to check winner function
         checkWinner();
@@ -113,7 +114,9 @@ $(() => {
         [null, null, null, null, null, null, null]
     ]
 
-    let currentPlayer = $playerToken;
+    
+    // let currentPlayer = $playerToken;
+    let currentPlayer = 'x';
     console.log(currentPlayer);
     let gameOver = 'false';
 
@@ -123,17 +126,17 @@ $(() => {
         const $row = $('<div>').addClass('row');
         for (let x = 0; x < columns; x++) {
             const $square = $('<div>').addClass('square');
-            // $square.text(currentPlayer);
-            // currentPlayer = (currentPlayer == $playerToken) ? $pcToken : $playerToken;
             //add borders to column
             if (columns > 0) {
-                //$square.addClass('border-bottom-left');
                 $square.addClass('border');
             }
             if (rows > 0) {
-                //$square.addClass('border-top-right');
                 $square.addClass('border');
             }
+
+            $square.on('click', (event) => {
+                $(event.currentTarget) == currentPlayer;
+            })
 
             $square.on('click', (event) => {
                 //console.log('stop clicking me');
