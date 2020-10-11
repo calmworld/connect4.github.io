@@ -1,5 +1,7 @@
 //console.log('i\'m connected');
 //organization layout is inspired from class work
+//inserting animations is from animista.net
+//learned how to make a circle through w3schools.com
 
 
 $(() => {
@@ -10,6 +12,12 @@ $(() => {
     let rows = 6; //y-axis
 
     let columns = 7; //x-axis
+
+    let $playerToken = $('<span>').addClass('slide-in-top');
+    $playerToken.css('color', 'red');
+
+    let $pcToken = $('<span>').addClass('slide-in-top');
+    $pcToken.css('color', 'blue');
 
     //start game by checking for end of game case
     //it will take 3 parameters a div $square, a column and a row
@@ -102,7 +110,7 @@ $(() => {
         [null, null, null, null, null, null, null]
     ]
 
-    let currentPlayer = 'red';
+    let currentPlayer = $playerToken;
     let gameOver = 'false';
 
     //create a grid using jquery
@@ -113,7 +121,7 @@ $(() => {
         for (let x = 0; x < columns; x++) {
             const $square = $('<div>').addClass('square');
             $square.text(currentPlayer);
-            currentPlayer = (currentPlayer == 'red') ? 'blue' : 'red';
+            currentPlayer = (currentPlayer == $playerToken) ? $pcToken : $playerToken;
             //add borders to column
             if (columns > 0) {
                 $square.addClass('border-bottom-left');
@@ -123,9 +131,12 @@ $(() => {
             }
 
             $square.on('click', (event) => {
-                console.log('stop clicking me');
+                //console.log('stop clicking me');
                 startGame($(event.currentTarget), columns, rows);
             });
+            $square.on('click', (event) => {
+                currentPlayer;
+            })
 
             $row.append($square);
         }
