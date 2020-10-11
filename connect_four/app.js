@@ -112,8 +112,9 @@ $(() => {
         [null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null]
-    ]
+    ];
 
+    // let cells = 42;
     
     // let currentPlayer = $playerToken;
     let currentPlayer = 'x';
@@ -126,6 +127,11 @@ $(() => {
         const $row = $('<div>').addClass('row');
         for (let x = 0; x < columns; x++) {
             const $square = $('<div>').addClass('square');
+            // $square.attr('id', cells[i]);
+            console.log($square);
+
+            //$square.attr('id', 'slide-in-top');
+
             //add borders to column
             if (columns > 0) {
                 $square.addClass('border');
@@ -151,6 +157,7 @@ $(() => {
 
             $row.append($square);
         }
+        
     $('#container').append($row);
     }
 
