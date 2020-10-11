@@ -32,6 +32,8 @@ $(() => {
         grid[rows][columns] = currentPlayer;
         //switch player every turn, start game with red player
         // currentPlayer = (currentPlayer == 'red') ? 'blue' : 'red';
+        $square.text(currentPlayer);
+        currentPlayer = (currentPlayer == $playerToken) ? $pcToken : $playerToken;
 
         //make a call to check winner function
         checkWinner();
@@ -115,15 +117,14 @@ $(() => {
     console.log(currentPlayer);
     let gameOver = 'false';
 
-    //create a grid using jquery
-
     
+    //create a grid using jquery
     for (let y = 0; y < rows; y++) {
         const $row = $('<div>').addClass('row');
         for (let x = 0; x < columns; x++) {
             const $square = $('<div>').addClass('square');
-            $square.text(currentPlayer);
-            currentPlayer = (currentPlayer == $playerToken) ? $pcToken : $playerToken;
+            // $square.text(currentPlayer);
+            // currentPlayer = (currentPlayer == $playerToken) ? $pcToken : $playerToken;
             //add borders to column
             if (columns > 0) {
                 //$square.addClass('border-bottom-left');
@@ -138,8 +139,11 @@ $(() => {
                 //console.log('stop clicking me');
                 startGame($(event.currentTarget), columns, rows);
             });
-            $square.on('click', (event) => {
-                $(event.currentTarget) == currentPlayer;
+            // $square.on('click', (event) => {
+            //     $(event.currentTarget) == currentPlayer;
+            // })
+            $square.on('mousover', (event) => {
+                $square.$(event.currentTarget).css('background color', 'rgba(150, 43, 43, 0.4);');
             })
 
             $row.append($square);
