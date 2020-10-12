@@ -1,3 +1,5 @@
+
+/* default style for mobile */
 #title {
     color: teal;
     text-align: center
@@ -18,6 +20,7 @@ body {
     justify-content: center;
     align-items: center;
     border: 30px solid lightcoral;
+    margin: 0;
 }
 
 .square {
@@ -65,6 +68,38 @@ body {
 #slide-in-top {
 	-webkit-animation: slide-in-top 1s cubic-bezier(0.785, 0.135, 0.150, 0.860) both;
 	        animation: slide-in-top 1s cubic-bezier(0.785, 0.135, 0.150, 0.860) both;
+}
+
+#reset {
+  font-size: 20px;
+  width: 10%;
+  border: 2px solid hotpink;
+  background-color: lightpink;
+  border-radius: 8px;
+  text-align: center;
+}
+
+a:link {
+  text-decoration: none;
+  color: teal;
+}
+a:visited {
+  text-decoration: none;
+}
+
+#reset:hover {
+  background-color: hotpink;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+/* styles for desktop when the browser is 600px or above */
+@media (min-width: 600px) {
+body {
+  background: thistle;
+}
 }
 
 /* ----------------------------------------------

@@ -33,7 +33,6 @@ $(() => {
         //switch player every turn, start game with red player
         currentPlayer = (currentPlayer == 'red') ? 'blue' : 'red';
 
-        // $square.text(currentPlayer);
         // currentPlayer = (currentPlayer == $playerToken) ? $pcToken : $playerToken;
 
         //make a call to check winner function
@@ -71,7 +70,7 @@ $(() => {
         checkDraw();
     }
 
-    //declare check row direction function
+    //declare check row direction function to see if any 4 colors match
     const rowDirection = (cell1, cell2, cell3, cell4) => {
         // if (cell1 && cell1 == cell2 && cell1 == cell3 && cell2 == cell4) {
         if (cell1 == cell2 && cell1 === cell3 && cell1 === cell4) {
@@ -117,7 +116,7 @@ $(() => {
     // let cells = 42;
     
     // let currentPlayer = $playerToken;
-    let currentPlayer = 'x';
+    let currentPlayer = 'red';
     console.log(currentPlayer);
     let gameOver = 'false';
 
@@ -140,8 +139,8 @@ $(() => {
                 $square.addClass('border');
             }
 
-            $square.on('click', (event) => {
-                $(event.currentTarget) == currentPlayer;
+            $square.on('click', () => {
+                $square.css('background-color', 'yellow')
             })
 
             $square.on('click', (event) => {
@@ -160,9 +159,5 @@ $(() => {
         
     $('#container').append($row);
     }
-
-    $('#reset').on('click', () => {
-        startGame();
-        //$('#reset').html('<a href="index.html"></a>');
-    })
+    
 })
