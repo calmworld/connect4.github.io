@@ -22,24 +22,27 @@ $(() => {
     //start game by checking for end of game case
     //it will take 3 parameters a div $square, a column and a row
     const startGame= ($square, columns, rows) => {
-        if (gameOver || $square.text()) {
+        if (gameOver) {
             return;
         }
 
         //assign text to currentPlayer
-        $square.text = currentPlayer;
+        //$square.text = currentPlayer;
         //assign grid array to current player
         grid[rows][columns] = currentPlayer;
         //switch player every turn, start game with red player
-        currentPlayer = (currentPlayer == 'red') ? 'blue' : 'red';
+        // currentPlayer = (currentPlayer == 'yellow') ? 'blue' : 'yellow';
 
-        // currentPlayer = (currentPlayer == $playerToken) ? $pcToken : $playerToken;
 
         //make a call to check winner function
         checkWinner();
     }
 
-    //declare check winner function
+
+    /////////////////////////////////////////
+    ////declare check winner function
+    /////////////////////////////////////////
+    
     const checkWinner = () => {
         //loop over rows
         for (let y = 0; y < rows; y++) {
@@ -70,7 +73,10 @@ $(() => {
         checkDraw();
     }
 
-    //declare check row direction function to see if any 4 colors match
+    /////////////////////////////////////////
+    ////declare rowDirection function
+    /////////////////////////////////////////
+    //see if any 4 colors match
     const rowDirection = (cell1, cell2, cell3, cell4) => {
         // if (cell1 && cell1 == cell2 && cell1 == cell3 && cell2 == cell4) {
         if (cell1 == cell2 && cell1 === cell3 && cell1 === cell4) {
@@ -79,7 +85,10 @@ $(() => {
         }
     }
 
-    //declare check draw function
+    /////////////////////////////////////////
+    ////declare checkDraw function
+    /////////////////////////////////////////
+    
     const checkDraw = () => {
         //loop through rows and columns to see if a row of 4 matches
         for (let y = 0; y < 4; y++) {
@@ -96,14 +105,19 @@ $(() => {
         gameOver = true;
     }
 
-    //declare modal function
+    /////////////////////////////////////////
+    ////declare modal function
+    /////////////////////////////////////////
+
     showModal = (message) => {
         $('#modal-textbox').text(message);
         $('#modal').css('display', 'flex');
     }
 
-
-    //draw game grid as array of arrays
+    /////////////////////////////////////////
+    ////game grid array of arrays
+    /////////////////////////////////////////
+    
     const grid = [
         [null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null],
@@ -112,52 +126,65 @@ $(() => {
         [null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null]
     ];
-
-    // let cells = 42;
     
-    // let currentPlayer = $playerToken;
-    let currentPlayer = 'red';
-    console.log(currentPlayer);
-    let gameOver = 'false';
-
+    //let currentPlayer = 'yellow';
+    //console.log(currentPlayer);
     
+
+    //////////////////////////////
+
+
+    /////////////////////////////////////////
     //create a grid using jquery
+    /////////////////////////////////////////
     for (let y = 0; y < rows; y++) {
         const $row = $('<div>').addClass('row');
         for (let x = 0; x < columns; x++) {
-            const $square = $('<div>').addClass('square');
-            // $square.attr('id', cells[i]);
-            console.log($square);
+            const $square = $('<div>').addClass('square')
+            .addClass('border')
 
-            //$square.attr('id', 'slide-in-top');
-
-            //add borders to column
-            if (columns > 0) {
-                $square.addClass('border');
-            }
-            if (rows > 0) {
-                $square.addClass('border');
-            }
-
-            $square.on('click', () => {
-                $square.css('background-color', 'yellow')
-            })
-
-            $square.on('click', (event) => {
-                //console.log('stop clicking me');
-                startGame($(event.currentTarget), columns, rows);
-            });
-            // $square.on('click', (event) => {
-            //     $(event.currentTarget) == currentPlayer;
-            // })
-            $square.on('mousover', (event) => {
-                $square.$(event.currentTarget).css('background color', 'rgba(150, 43, 43, 0.4);');
-            })
-
+            //console.log($square);
+            
             $row.append($square);
         }
-        
-    $('#container').append($row);
+        $('#container').append($row);
     }
+    $('.square').on('click', playerMove)
+});
+
+    let gameOver = 'false';
+    let choice = true;
+    function toggle() {
+        choice = choice ? false : true
+    }
+    const playerMove = () => {
+        let $move = $(event.currentTarget);
+        if (choice === true) {
+            $move.addClass('full').css('pointer-events', 'none')
+            .css('background-color', 'blue')
+            .attr('id', 'slide-in-top');
+            toggle()
+            checkWinner()
+
+        } else {
+            $move.addClass('full').css('pointer-events', 'none')
+            .css('background-color', 'yellow')
+            .attr('id', 'slide-in-top');
+            toggle()
+            checkWinner()
+
+        }
+
+    }
+
+        
+    /////////////////////////////////////////
+    //event handlers
+    /////////////////////////////////////////
+            // $square.on('click', () => {
+            //     $square.css('background-color', 'yellow')
+            // })
+
     
-})
+
+//})
