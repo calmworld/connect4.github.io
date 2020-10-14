@@ -75,7 +75,7 @@ const playerMove = () => {
         let x = target.id.split(',')[0]
         let y = target.id.split(',')[1]
         grid[x][y] = 'yellow'
-        console.log(grid[x][y])
+        //console.log(grid[x][y])
 
         toggle()
         checkWinner()
@@ -143,7 +143,7 @@ const checkWinner = () => {
 const rowDirection = (cell1, cell2, cell3, cell4) => {
     //check for truthy value on cell1
     if (cell1 && cell1 == cell2 && cell1 === cell3 && cell1 === cell4) {
-        showModal (cell1 + ' wins!');
+        showModal(cell1 + ' wins!');
         gameOver = true;
     }
     
