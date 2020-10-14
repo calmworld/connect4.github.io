@@ -1,5 +1,5 @@
 //console.log('i\'m connected');
-//organization layout is inspired from class work 
+//organization layout is inspired from class work on tic tac toe.
 //inserting animations is from animista.net
 //learned how to make a circle through w3schools.com
 
@@ -7,69 +7,36 @@
 //create a grid using jquery
 /////////////////////////////////////////
 
-    //connect four has 6 rows on it's y-axis
-    //and 7 columns in it's x-axis
+//connect four has 6 rows on it's y-axis
+//and 7 columns in it's x-axis
 
-    let rows = 6; //y-axis
+let rows = 6; //y-axis
 
-    let columns = 7; //x-axis
+let columns = 7; //x-axis
 
-    //let yellowArr = [];
-    //let blueArr = [];
-
+//let yellowArr = [];
+//let blueArr = [];
 
 $(() => {
-    for (let y = 0; y < rows; y++) {
-        const $row = $('<div>').addClass('row');
-        $row.attr('id', [y]);
-        for (let x = 0; x < columns; x++) {
-            const $square = $('<div>').addClass('square')
-            .addClass('border')
-            .addClass(x)
-            //$square.attr('id', [x])
-            let $cellId = $($square).attr('id', x);
-            
-            console.log($square);
-            
-            $row.append($square);
+        for (let y = 0; y < rows; y++) {
+            const $row = $('<div>').addClass('row');
+            $row.attr('id', [y]);
+
+            for (let x = 0; x < columns; x++) {
+                const $square = $('<div>').addClass('square')
+                .addClass('border')
+                //.addClass(x)
+
+                $($square).attr('id', `${x},${y}`);
+                
+                console.log($square);
+                
+                $row.append($square);
+            }
+            $('#container').append($row);
         }
-        $('#container').append($row);
-    }
     $('.square').on('click', playerMove)
 });
-
-
-let gameOver = 'false';
-
-let choice = true;
-function toggle() {
-    choice = choice ? false : true
-}
-
-const playerMove = () => {
-
-    let $move = $(event.currentTarget);
-    if (choice === true) {
-        $move.addClass('full').css('pointer-events', 'none')
-        .css('background-color', 'yellow')
-        .attr('id', 'slide-in-top');
-        toggle()
-        //yellowArr.push($(event.currentTarget))
-        //console.log(yellowArr)
-        checkWinner()
-
-    } else {
-        $move.addClass('full').css('pointer-events', 'none')
-        .css('background-color', 'blue')
-        .attr('id', 'slide-in-top');
-        toggle()
-        //blueArr.push('#x')
-        //console.log(blueArr)
-        checkWinner()
-
-    }
-    
-}
 
 
 /////////////////////////////////////////
@@ -85,12 +52,58 @@ const grid = [
     [null, null, null, null, null, null, null]
 ];
 
-// for (let i = 0; i < grid.length; i++) {
-//     for (let j = 0; j < grid[i].length; j++) {
-//         let cellId = grid[i][j];
-//         console.log(cellId);
-//     }
-// }
+for (let y = 0; y < grid; y++) {
+    for (let x = 0; x < grid[y]; x++) {
+        let cellId = grid[y][x];
+    }
+    //console.log(cellId)
+}
+
+
+
+let gameOver = 'false';
+
+let currentPlayer = 'yellow';
+
+let choice = true;
+function toggle() {
+    choice = choice ? false : true
+}
+
+const playerMove = () => {
+
+    let $move = $(event.CurrentTarget);
+    console.log($move);
+
+    if (choice === true) {
+        $move.addClass('full').css('pointer-events', 'none')
+        .css('background-color', 'yellow')
+        let x = $move.id.split(',')[0]
+        let y = $move.id.split(',')[1]
+        grid[y][x] = 'yellow'
+        .attr('id', 'slide-in-top');
+        toggle()
+        //yellowArr.push($(event.currentTarget))
+        //console.log(yellowArr)
+        checkWinner()
+
+    } else {
+        $move.addClass('full').css('pointer-events', 'none')
+        .css('background-color', 'blue')
+        let x = $move.id.split(',')[0]
+        let y = $move.id.split(',')[1]
+        grid[y][x] = 'blue'
+        .attr('id', 'slide-in-top');
+        toggle()
+        //blueArr.push('#x')
+        //console.log(blueArr)
+        checkWinner()
+
+    }
+    
+}
+
+
 
 /////////////////////////////////////////
 ////declare check winner 
@@ -101,7 +114,7 @@ const checkWinner = () => {
     for (let y = 0; y < rows; y++) {
         rowDirection(grid[y][0], grid[y][1], grid[y][2], grid[y][3], grid[y][4], grid[y][5]);
         //console.log(rowDirection)
-        console.log(grid[y][x])
+        console.log(grid[y])
 
         if (gameOver) {
             return;
@@ -135,10 +148,12 @@ const checkWinner = () => {
 /////////////////////////////////////////
 //see if any 4 colors match
 const rowDirection = (cell1, cell2, cell3, cell4) => {
-    // if (cell1 && cell1 == cell2 && cell1 == cell3 && cell1 == cell4) {
-    return (cell1 == cell2 && cell1 === cell3 && cell1 === cell4);
-    //showModal (cell1 + ' wins!');
-    //gameOver = true;
+    //if (cell1 && cell1 == cell2 && cell1 == cell3 && cell1 == cell4) {
+    if (cell1 == cell2 && cell1 === cell3 && cell1 === cell4) {
+        //showModal (cell1 + ' wins!');
+        gameOver = true;
+    }
+    
 }
 
 

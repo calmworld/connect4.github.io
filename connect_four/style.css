@@ -11,17 +11,13 @@ body {
 
 #container {
     background-color: lightcoral;
-    width: 95%;
-    /* align-content: center; */
-    /* text-align: center;
-    display: inline-block; */
-    /* width: auto;
-    height: auto; */
+    align-content: center;
+    text-align: center;
     display: grid;
     justify-content: center;
     align-items: center;
     border: 20px solid lightcoral;
-    /* margin: 0; */
+    margin: 0;
 }
 
 .square {
@@ -101,6 +97,11 @@ a:active {
 body {
   background: thistle;
 }
+
+#container {
+  margin: 0px;
+}
+
 }
 
 /* ----------------------------------------------
