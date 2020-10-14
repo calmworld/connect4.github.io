@@ -26,15 +26,9 @@ $(() => {
                 const $square = $('<div>').addClass('square')
                 .addClass('border')
 
-                //$square.attr('id', `${x},${y}`);
+                $square.attr('id', `${x},${y}`);
                 
-                $square.attr('id', `${y},${x}`);
-
-
-                //$(this).id = grid[y][x]
-                grid[y][x] = $(this).id;
-                
-                console.log($square);
+                //console.log($square);
                 
                 $row.append($square);
             }
@@ -59,49 +53,42 @@ const grid = [
 
 
 
-// for (let y = 0; y < grid; y++) {
-//     for (let x = 0; x < grid[y]; x++) {
-//         let cellId = grid[y][x]
-//     }
-//     console.log(cellId)
-// }
 
-
-
-//let gameOver = 'false';
+let gameOver = 'false';
 
 let choice = true;
 function toggle() {
     choice = choice ? false : true
 }
 
-const playerMove = (x, y) => {
-    let $move = $(event.CurrentTarget);
-    console.log($move);
+const playerMove = () => {
+    //console.log(event)
+    let $move = $(event.currentTarget);
+    const target = event.currentTarget;
+    //console.log($move);
+    console.log(target)
 
     if (choice === true) {
         $move.addClass('full').css('pointer-events', 'none')
         .css('background-color', 'yellow')
+        .addClass('slide-in-top');
+        let x = target.id.split(',')[0]
+        let y = target.id.split(',')[1]
+        grid[x][y] = 'yellow'
+        console.log(grid[x][y])
 
-        let x = $move.id.split(',')[0]
-        let y = $move.id.split(',')[1]
-        grid[y][x] = 'yellow'
-
-
-        // .attr('id', 'slide-in-top');
         toggle()
         checkWinner()
 
     } else {
         $move.addClass('full').css('pointer-events', 'none')
         .css('background-color', 'blue')
+        .addClass('slide-in-top');
 
-        let x = $move.id.split(',')[0]
-        let y = $move.id.split(',')[1]
-        grid[y][x] = 'blue'
+        let x = target.id.split(',')[0]
+        let y = target.id.split(',')[1]
+        grid[x][y] = 'blue'
 
-
-        //.attr('id', 'slide-in-top');
         toggle()
         checkWinner()
 
@@ -120,7 +107,7 @@ const checkWinner = () => {
     for (let y = 0; y < rows; y++) {
         rowDirection(grid[y][0], grid[y][1], grid[y][2], grid[y][3], grid[y][4], grid[y][5]);
         //console.log(rowDirection)
-        console.log(grid[y])
+        console.log(grid)
 
         if (gameOver) {
             return;
@@ -154,9 +141,9 @@ const checkWinner = () => {
 /////////////////////////////////////////
 //see if any 4 colors match
 const rowDirection = (cell1, cell2, cell3, cell4) => {
-    //if (cell1 && cell1 == cell2 && cell1 == cell3 && cell1 == cell4) {
-    if (cell1 == cell2 && cell1 === cell3 && cell1 === cell4) {
-        //showModal (cell1 + ' wins!');
+    //check for truthy value on cell1
+    if (cell1 && cell1 == cell2 && cell1 === cell3 && cell1 === cell4) {
+        showModal (cell1 + ' wins!');
         gameOver = true;
     }
     
@@ -192,34 +179,5 @@ showModal = (message) => {
     $('#modal').css('display', 'flex');
 }
 
-/////////////////////////////////////////
-
-// const playerYellWin = () => {
-//     showModal('yellow wins!')
-// }
-
-// const playerBlueWin = () => {
-//     showModal('blue wins!')
-// }
 
 /////////////////////////////////////////
-////declare check winner Yellow
-/////////////////////////////////////////
-
-// const checkWinnerYellow = () => {
-//     if (yellowArr.includes([0, 1, 2, 3])) {
-//         console.log('yellow wins')
-//         playerYellWin()
-//     }
-// }
-
-/////////////////////////////////////////
-////declare check winner Blue
-/////////////////////////////////////////
-
-// const checkWinnerBlue = () => {
-//     if (blueArr.includes([0, 1, 2, 3])) {
-//         console.log('blue wins')
-//         playerBlueWin()
-//     }
-// }
