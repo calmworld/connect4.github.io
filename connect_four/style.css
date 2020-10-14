@@ -11,6 +11,7 @@ body {
 
 #container {
     background-color: lightcoral;
+    width: 95%;
     /* align-content: center; */
     /* text-align: center;
     display: inline-block; */
