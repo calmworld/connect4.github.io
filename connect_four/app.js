@@ -25,9 +25,14 @@ $(() => {
             for (let x = 0; x < columns; x++) {
                 const $square = $('<div>').addClass('square')
                 .addClass('border')
-                //.addClass(x)
 
-                $($square).attr('id', `${x},${y}`);
+                //$square.attr('id', `${x},${y}`);
+                
+                $square.attr('id', `${y},${x}`);
+
+
+                //$(this).id = grid[y][x]
+                grid[y][x] = $(this).id;
                 
                 console.log($square);
                 
@@ -52,51 +57,52 @@ const grid = [
     [null, null, null, null, null, null, null]
 ];
 
-for (let y = 0; y < grid; y++) {
-    for (let x = 0; x < grid[y]; x++) {
-        let cellId = grid[y][x];
-    }
-    //console.log(cellId)
-}
+
+
+// for (let y = 0; y < grid; y++) {
+//     for (let x = 0; x < grid[y]; x++) {
+//         let cellId = grid[y][x]
+//     }
+//     console.log(cellId)
+// }
 
 
 
-let gameOver = 'false';
-
-let currentPlayer = 'yellow';
+//let gameOver = 'false';
 
 let choice = true;
 function toggle() {
     choice = choice ? false : true
 }
 
-const playerMove = () => {
-
+const playerMove = (x, y) => {
     let $move = $(event.CurrentTarget);
     console.log($move);
 
     if (choice === true) {
         $move.addClass('full').css('pointer-events', 'none')
         .css('background-color', 'yellow')
+
         let x = $move.id.split(',')[0]
         let y = $move.id.split(',')[1]
         grid[y][x] = 'yellow'
-        .attr('id', 'slide-in-top');
+
+
+        // .attr('id', 'slide-in-top');
         toggle()
-        //yellowArr.push($(event.currentTarget))
-        //console.log(yellowArr)
         checkWinner()
 
     } else {
         $move.addClass('full').css('pointer-events', 'none')
         .css('background-color', 'blue')
+
         let x = $move.id.split(',')[0]
         let y = $move.id.split(',')[1]
         grid[y][x] = 'blue'
-        .attr('id', 'slide-in-top');
+
+
+        //.attr('id', 'slide-in-top');
         toggle()
-        //blueArr.push('#x')
-        //console.log(blueArr)
         checkWinner()
 
     }
