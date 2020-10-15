@@ -1,7 +1,6 @@
 //console.log('i\'m connected');
-//organization layout is inspired from class work on tic tac toe.
+//solution is inspired from class work on tic tac toe. 
 //inserting animations is from animista.net
-//learned how to make a circle through w3schools.com
 
 /////////////////////////////////////////
 //create a grid using jquery
@@ -25,6 +24,7 @@ $(() => {
             for (let x = 0; x < columns; x++) {
                 const $square = $('<div>').addClass('square')
                 .addClass('border')
+                .addClass('empty')
 
                 $square.attr('id', `${x},${y}`);
                 
@@ -51,10 +51,40 @@ const grid = [
     [null, null, null, null, null, null, null]
 ];
 
+// let cells = $(`.square[grid[x][y]]`)
+// for (let i = cells.length -1; grid >= 0; i--) {
+//     const $cell = $(cells[i])
+//     if ($cell.hasClass('empty')) {
+//         return $cell;
+//     }
+//     return null;
+    
+// }
 
+
+for (let i = grid.length -1; grid >= 0; i--) {
+    if (grid[x][y] = null) {
+        grid[x][y] = 'yellow'
+        break;
+    } else {
+        grid[x][y] = 'blue'
+    }
+}
+//console.log(grid[x][y])
 
 
 let gameOver = 'false';
+let yellowScore = 0;
+let blueScore = 0;
+
+
+const score = document.querySelector('#score');
+score.innerHTML = `
+<h3>Yellow Score: <span> ${yellowScore}</span></h3>
+<h3>Blue Score: <span> ${blueScore}</span></h3>
+`;
+
+
 
 let choice = true;
 function toggle() {
@@ -69,8 +99,8 @@ const playerMove = () => {
     console.log(target)
 
     if (choice === true) {
-        $move.addClass('full').css('pointer-events', 'none')
-        .css('background-color', 'yellow')
+        $move.removeClass('empty').addClass('full')
+        .css('pointer-events', 'none').css('background-color', 'yellow')
         .addClass('slide-in-top');
         let x = target.id.split(',')[0]
         let y = target.id.split(',')[1]
@@ -81,8 +111,8 @@ const playerMove = () => {
         checkWinner()
 
     } else {
-        $move.addClass('full').css('pointer-events', 'none')
-        .css('background-color', 'blue')
+        $move.removeClass('empty').addClass('full')
+        .css('pointer-events', 'none').css('background-color', 'blue')
         .addClass('slide-in-top');
 
         let x = target.id.split(',')[0]
@@ -107,7 +137,7 @@ const checkWinner = () => {
     for (let y = 0; y < rows; y++) {
         rowDirection(grid[y][0], grid[y][1], grid[y][2], grid[y][3], grid[y][4], grid[y][5]);
         //console.log(rowDirection)
-        console.log(grid)
+        //console.log(grid)
 
         if (gameOver) {
             return;
@@ -141,8 +171,10 @@ const checkWinner = () => {
 /////////////////////////////////////////
 //see if any 4 colors match
 const rowDirection = (cell1, cell2, cell3, cell4) => {
+    // console.log(rowDirection)
     //check for truthy value on cell1
     if (cell1 && cell1 == cell2 && cell1 === cell3 && cell1 === cell4) {
+        console.log(rowDirection)
         showModal(cell1 + ' wins!');
         gameOver = true;
     }

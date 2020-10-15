@@ -9,6 +9,18 @@ body {
     background-color: thistle;
 }
 
+#score {
+  font-size: 20px;
+}
+
+.yellow-score {
+  color: yellow;
+}
+
+.blue-score {
+  color: blue;
+}
+
 #container {
     background-color: lightcoral;
     align-content: center;
