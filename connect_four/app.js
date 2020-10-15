@@ -2,6 +2,17 @@
 //solution is inspired from class work on tic tac toe. 
 //inserting animations is from animista.net
 
+
+alert('Player 1: you will be yellow!');
+alert('Player 2: you will be blue!');
+
+// const msg = document.querySelector('#msg');
+// msg.innerHTML = `
+// <h5>Player 1: you will be yellow!</h>
+// <h5>Player 2: you will be blue!</h5>`;
+
+    
+
 /////////////////////////////////////////
 //create a grid using jquery
 /////////////////////////////////////////
@@ -24,9 +35,8 @@ $(() => {
             for (let x = 0; x < columns; x++) {
                 const $square = $('<div>').addClass('square')
                 .addClass('border')
-                .addClass('empty')
 
-                $square.attr('id', `${x},${y}`);
+                $square.attr('id', `${y},${x}`);
                 
                 //console.log($square);
                 
@@ -51,40 +61,42 @@ const grid = [
     [null, null, null, null, null, null, null]
 ];
 
-// let cells = $(`.square[grid[x][y]]`)
-// for (let i = cells.length -1; grid >= 0; i--) {
-//     const $cell = $(cells[i])
-//     if ($cell.hasClass('empty')) {
-//         return $cell;
+
+/////////////////////////////////////////
+////Dropping tokens in grid bottom 
+/////////////////////////////////////////
+
+
+// for (let i = grid.length -1; grid >= 0; i--) {
+//     if (grid[x][y] = null) {
+//         grid[x][y].css('color', 'yellow')
+//         console.log(grid[x][y])
+//         break;
+//     } else {
+//         grid[x][y].css('color', 'blue')
 //     }
-//     return null;
-    
 // }
-
-
-for (let i = grid.length -1; grid >= 0; i--) {
-    if (grid[x][y] = null) {
-        grid[x][y] = 'yellow'
-        break;
-    } else {
-        grid[x][y] = 'blue'
-    }
-}
 //console.log(grid[x][y])
 
+
+/////////////////////////////////////////
+////game start - stats
+/////////////////////////////////////////
 
 let gameOver = 'false';
 let yellowScore = 0;
 let blueScore = 0;
 
 
-const score = document.querySelector('#score');
+let score = document.querySelector('#score');
 score.innerHTML = `
 <h3>Yellow Score: <span> ${yellowScore}</span></h3>
 <h3>Blue Score: <span> ${blueScore}</span></h3>
 `;
 
-
+/////////////////////////////////////////
+////player move function
+/////////////////////////////////////////
 
 let choice = true;
 function toggle() {
@@ -99,29 +111,39 @@ const playerMove = () => {
     console.log(target)
 
     if (choice === true) {
-        $move.removeClass('empty').addClass('full')
+        $move.addClass('full')
         .css('pointer-events', 'none').css('background-color', 'yellow')
         .addClass('slide-in-top');
-        let x = target.id.split(',')[0]
-        let y = target.id.split(',')[1]
-        grid[x][y] = 'yellow'
+        let y = target.id.split(',')[0]
+        let x = target.id.split(',')[1]
+        grid[y][x] = 'yellow'
         //console.log(grid[x][y])
 
         toggle()
         checkWinner()
 
     } else {
-        $move.removeClass('empty').addClass('full')
+        $move.addClass('full')
         .css('pointer-events', 'none').css('background-color', 'blue')
         .addClass('slide-in-top');
 
-        let x = target.id.split(',')[0]
-        let y = target.id.split(',')[1]
-        grid[x][y] = 'blue'
+        let y = target.id.split(',')[0]
+        let x = target.id.split(',')[1]
+        grid[y][x] = 'blue'
+        //console.log(x)
+        //console.log(y)
+        //console.log(grid[x][y])
 
         toggle()
         checkWinner()
 
+    }
+
+    if (checkWinner === 'yellow') {
+        yellowScore++;
+    }
+    if (checkWinner === 'blue') {
+        blueScore++;
     }
     
 }
@@ -136,9 +158,6 @@ const checkWinner = () => {
     //loop over rows
     for (let y = 0; y < rows; y++) {
         rowDirection(grid[y][0], grid[y][1], grid[y][2], grid[y][3], grid[y][4], grid[y][5]);
-        //console.log(rowDirection)
-        //console.log(grid)
-
         if (gameOver) {
             return;
         }
@@ -150,6 +169,7 @@ const checkWinner = () => {
             return;
         }
     }
+    
     //check forward direction
     rowDirection(grid[0][0], grid[1][1], grid[2][2], grid[3][3], grid[4][4], grid[5][5]);
     if (gameOver) {
@@ -174,6 +194,7 @@ const rowDirection = (cell1, cell2, cell3, cell4) => {
     // console.log(rowDirection)
     //check for truthy value on cell1
     if (cell1 && cell1 == cell2 && cell1 === cell3 && cell1 === cell4) {
+        //grid[x][y] = cell1
         console.log(rowDirection)
         showModal(cell1 + ' wins!');
         gameOver = true;
