@@ -67,16 +67,17 @@ const grid = [
 /////////////////////////////////////////
 
 
-// for (let i = grid.length -1; grid >= 0; i--) {
-//     if (grid[x][y] = null) {
-//         grid[x][y].css('color', 'yellow')
-//         console.log(grid[x][y])
-//         break;
-//     } else {
-//         grid[x][y].css('color', 'blue')
-//     }
-// }
-//console.log(grid[x][y])
+for (let i = grid.length -1; grid >= 0; i--) {
+    if (grid[y] = null) {
+        grid[y] = 'yellow'
+        console.log(grid[y])
+        break;
+    } else {
+        grid[x] = 'blue'
+        console.log(grid[x])
+    }
+}
+
 
 
 /////////////////////////////////////////
