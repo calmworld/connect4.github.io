@@ -1,16 +1,11 @@
 //console.log('i\'m connected');
 //solution is inspired from class work on tic tac toe. 
 //inserting animations is from animista.net
+//Michael Sturrus helped a lot with win condition functionality.
 
 
-alert('Player 1: you will be yellow!');
-alert('Player 2: you will be blue!');
-
-// const msg = document.querySelector('#msg');
-// msg.innerHTML = `
-// <h5>Player 1: you will be yellow!</h>
-// <h5>Player 2: you will be blue!</h5>`;
-
+alert('Player 1: your token will be yellow!');
+alert('Player 2: your token will be blue!');
     
 
 /////////////////////////////////////////
@@ -18,14 +13,12 @@ alert('Player 2: you will be blue!');
 /////////////////////////////////////////
 
 //connect four has 6 rows on it's y-axis
-//and 7 columns in it's x-axis
+//and 7 columns on it's x-axis
 
 let rows = 6; //y-axis
 
 let columns = 7; //x-axis
 
-//let yellowArr = [];
-//let blueArr = [];
 
 $(() => {
         for (let y = 0; y < rows; y++) {
@@ -83,6 +76,7 @@ for (let i = grid.length -1; grid >= 0; i--) {
 /////////////////////////////////////////
 ////game start - stats
 /////////////////////////////////////////
+
 
 let gameOver = 'false';
 let yellowScore = 0;
@@ -157,19 +151,38 @@ const playerMove = () => {
 
 const checkWinner = () => {
     //loop over rows
-    for (let y = 0; y < rows; y++) {
-        rowDirection(grid[y][0], grid[y][1], grid[y][2], grid[y][3], grid[y][4], grid[y][5]);
-        if (gameOver) {
-            return;
+    for (let x = 0; x < rows - 3; x++) {
+        for (let y = 0; y < columns; y++) {
+            rowDirection(grid[x][y], grid[x + 1][y], grid[x + 2][y], grid[x + 3][y])
         }
     }
+    
+    for (let x = 0; x < rows; x++) {
+        for (let y = 0; y < columns - 3; y++) {
+            rowDirection(grid[x][y], grid[x][y + 1], grid[x][y + 2], grid[x][y + 3])
+        }
+    }
+
+    for (let x = 0; x < rows - 3; x++) {
+        for (let y = 0; y < columns - 3; y++) {
+            rowDirection(grid[x][y], grid[x + 1][y + 1], grid[x + 2][y + 2], grid[x + 3][y + 3])
+        }
+    }
+
+    for (let x = 0; x < rows; x++) {
+        for (let y = 3; y < columns; y++) {
+            rowDirection(grid[x][y], grid[x + 1][y - 1], grid[x + 2][y - 2], grid[x + 3][y - 3])
+        }
+    }
+    
+
     //loop over columns
-    for (let x = 0; x < columns; x++) {
-        rowDirection(grid[0][x], grid[1][x], grid[2][x], grid[3][x], grid[4][x], grid[5][x], grid[6][x]);
-        if (gameOver) {
-            return;
-        }
-    }
+    // for (let x = 0; x < columns; x++) {
+    //     rowDirection(grid[0][x], grid[1][x], grid[2][x], grid[3][x], grid[4][x], grid[5][x], grid[6][x]);
+    //     if (gameOver) {
+    //         return;
+    //     }
+    // }
     
     //check forward direction
     rowDirection(grid[0][0], grid[1][1], grid[2][2], grid[3][3], grid[4][4], grid[5][5]);
@@ -195,7 +208,6 @@ const rowDirection = (cell1, cell2, cell3, cell4) => {
     // console.log(rowDirection)
     //check for truthy value on cell1
     if (cell1 && cell1 == cell2 && cell1 === cell3 && cell1 === cell4) {
-        //grid[x][y] = cell1
         console.log(rowDirection)
         showModal(cell1 + ' wins!');
         gameOver = true;
