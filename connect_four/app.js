@@ -1,12 +1,14 @@
 //console.log('i\'m connected');
-//solution is inspired from class work on tic tac toe. 
+//solution is inspired from class work on tic tac toe.
+//modal settings from class work https://git.generalassemb.ly/calmworld/student-resources/tree/master/1_front_end_development/w03d02/morning_exercise 
 //inserting animations is from animista.net
 //Michael Sturrus helped a lot with win condition functionality.
 
 
-alert('Player 1: your token will be yellow!');
-alert('Player 2: your token will be blue!');
-    
+
+//alert('Player 1: your token will be yellow!');
+//alert('Player 2: your token will be blue!');
+
 
 /////////////////////////////////////////
 //create a grid using jquery
@@ -79,15 +81,9 @@ for (let i = grid.length -1; grid >= 0; i--) {
 
 
 let gameOver = 'false';
-let yellowScore = 0;
-let blueScore = 0;
 
+$('#msg').html("<p>It\'s <em>Yellow\'s</em> Turn</p>")
 
-let score = document.querySelector('#score');
-score.innerHTML = `
-<h3>Yellow Score: <span> ${yellowScore}</span></h3>
-<h3>Blue Score: <span> ${blueScore}</span></h3>
-`;
 
 /////////////////////////////////////////
 ////player move function
@@ -104,7 +100,6 @@ const playerMove = () => {
     const target = event.currentTarget;
     //console.log($move);
     console.log(target)
-
     if (choice === true) {
         $move.addClass('full')
         .css('pointer-events', 'none').css('background-color', 'yellow')
@@ -113,7 +108,7 @@ const playerMove = () => {
         let x = target.id.split(',')[1]
         grid[y][x] = 'yellow'
         //console.log(grid[x][y])
-
+        $('#msg').html("<p>It\'s <em>Blue\'s</em> Turn</p>")
         toggle()
         checkWinner()
 
@@ -125,20 +120,11 @@ const playerMove = () => {
         let y = target.id.split(',')[0]
         let x = target.id.split(',')[1]
         grid[y][x] = 'blue'
-        //console.log(x)
-        //console.log(y)
         //console.log(grid[x][y])
-
+        $('#msg').html("<p>It\'s <em>Yellow\'s</em> Turn</p>")
         toggle()
         checkWinner()
 
-    }
-
-    if (checkWinner === 'yellow') {
-        yellowScore++;
-    }
-    if (checkWinner === 'blue') {
-        blueScore++;
     }
     
 }
@@ -174,27 +160,6 @@ const checkWinner = () => {
             rowDirection(grid[x][y], grid[x + 1][y - 1], grid[x + 2][y - 2], grid[x + 3][y - 3])
         }
     }
-    
-
-    //loop over columns
-    // for (let x = 0; x < columns; x++) {
-    //     rowDirection(grid[0][x], grid[1][x], grid[2][x], grid[3][x], grid[4][x], grid[5][x], grid[6][x]);
-    //     if (gameOver) {
-    //         return;
-    //     }
-    // }
-    
-    //check forward direction
-    rowDirection(grid[0][0], grid[1][1], grid[2][2], grid[3][3], grid[4][4], grid[5][5]);
-    if (gameOver) {
-        return;
-    }
-
-    //check backward direction
-    rowDirection(grid[0][5], grid[1][4], grid[2][3], grid[3][2], grid[4][1], grid[5][0]);
-    if (gameOver) {
-        return;
-    }
 
     checkDraw();
 }
@@ -205,14 +170,12 @@ const checkWinner = () => {
 /////////////////////////////////////////
 //see if any 4 colors match
 const rowDirection = (cell1, cell2, cell3, cell4) => {
-    // console.log(rowDirection)
     //check for truthy value on cell1
     if (cell1 && cell1 == cell2 && cell1 === cell3 && cell1 === cell4) {
-        console.log(rowDirection)
+        //console.log(rowDirection)
         showModal(cell1 + ' wins!');
         gameOver = true;
     }
-    
 }
 
 
@@ -222,10 +185,10 @@ const rowDirection = (cell1, cell2, cell3, cell4) => {
 
 const checkDraw = () => {
     //loop through rows and columns to see if a row of 4 matches
-    for (let y = 0; y < 4; y++) {
-        for (let x = 0; x < 4; x++) {
+    for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < columns; x++) {
             //if there are no full grids, then the board is not full yet
-            if (!grid[y][x]) {
+            if (!grid[x][y]) {
                 return;
             }
         }
