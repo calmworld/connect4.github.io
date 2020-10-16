@@ -3,6 +3,8 @@
 //modal settings from class work https://git.generalassemb.ly/calmworld/student-resources/tree/master/1_front_end_development/w03d02/morning_exercise 
 //inserting animations is from animista.net
 //Michael Sturrus helped a lot with win condition functionality.
+//I researched a lot of methods on https://api.jquery.com/ I find it very easy to read!
+
 
 
 
@@ -64,11 +66,11 @@ const grid = [
 
 for (let i = grid.length -1; grid >= 0; i--) {
     if (grid[y] = null) {
-        grid[y] = 'yellow'
+        grid[y] = 'Yellow'
         console.log(grid[y])
         break;
     } else {
-        grid[x] = 'blue'
+        grid[x] = 'Blue'
         console.log(grid[x])
     }
 }
@@ -82,7 +84,7 @@ for (let i = grid.length -1; grid >= 0; i--) {
 
 let gameOver = 'false';
 
-$('#msg').html("<p>It\'s <em>Yellow\'s</em> Turn</p>")
+$('#msg-text').html("<p>It\'s <em>Yellow\'s</em> Turn</p>").css('color', 'yellow')
 
 
 /////////////////////////////////////////
@@ -103,25 +105,25 @@ const playerMove = () => {
     if (choice === true) {
         $move.addClass('full')
         .css('pointer-events', 'none').css('background-color', 'yellow')
-        .addClass('slide-in-top');
+        .addClass('bounce-top');
         let y = target.id.split(',')[0]
         let x = target.id.split(',')[1]
-        grid[y][x] = 'yellow'
+        grid[y][x] = 'Yellow'
         //console.log(grid[x][y])
-        $('#msg').html("<p>It\'s <em>Blue\'s</em> Turn</p>")
+        $('#msg').html("<p>It\'s <em>Blue\'s</em> Turn</p>").css('color', 'blue')
         toggle()
         checkWinner()
 
     } else {
         $move.addClass('full')
         .css('pointer-events', 'none').css('background-color', 'blue')
-        .addClass('slide-in-top');
+        .addClass('bounce-top');
 
         let y = target.id.split(',')[0]
         let x = target.id.split(',')[1]
-        grid[y][x] = 'blue'
+        grid[y][x] = 'Blue'
         //console.log(grid[x][y])
-        $('#msg').html("<p>It\'s <em>Yellow\'s</em> Turn</p>")
+        $('#msg').html("<p>It\'s <em>Yellow\'s</em> Turn</p>").css('color', 'yellow')
         toggle()
         checkWinner()
 
@@ -173,7 +175,7 @@ const rowDirection = (cell1, cell2, cell3, cell4) => {
     //check for truthy value on cell1
     if (cell1 && cell1 == cell2 && cell1 === cell3 && cell1 === cell4) {
         //console.log(rowDirection)
-        showModal(cell1 + ' wins!');
+        showModal(cell1 + ' Wins!');
         gameOver = true;
     }
 }
