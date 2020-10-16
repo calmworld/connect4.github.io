@@ -110,7 +110,7 @@ const playerMove = () => {
         let x = target.id.split(',')[1]
         grid[y][x] = 'Yellow'
         //console.log(grid[x][y])
-        $('#msg').html("<p>It\'s <em>Blue\'s</em> Turn</p>").css('color', 'blue')
+        $('#msg-text').html("<p>It\'s <em>Blue\'s</em> Turn</p>").css('color', 'blue')
         toggle()
         checkWinner()
 
@@ -123,7 +123,7 @@ const playerMove = () => {
         let x = target.id.split(',')[1]
         grid[y][x] = 'Blue'
         //console.log(grid[x][y])
-        $('#msg').html("<p>It\'s <em>Yellow\'s</em> Turn</p>").css('color', 'yellow')
+        $('#msg-text').html("<p>It\'s <em>Yellow\'s</em> Turn</p>").css('color', 'yellow')
         toggle()
         checkWinner()
 
