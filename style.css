@@ -155,12 +155,13 @@ a:active {
 /* styles for mobile */
 
 /* Portrait and Landscape */
-@media only screen 
+/* @media only screen 
   and (min-device-width: 375px) 
   and (max-device-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 3) { 
 
-}
+
+} */
 
 /* Portrait and Landscape */
 @media screen 
@@ -172,8 +173,8 @@ a:active {
   }
   
   .square {
-    width: 200px;
-    height: 4px;
+    width: 20px;
+    height: 40px;
   }
 }
 
