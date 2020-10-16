@@ -63,17 +63,21 @@ const grid = [
 ////Dropping tokens in grid bottom 
 /////////////////////////////////////////
 
+// $('.square').on('click', playerMove(event) {
+//     for (let i = grid.length -1; grid >= 0; i--) {
+//         if (grid[i] = null) {
+//             $(event.currentTarget).children.eq(i).css('background-color', 'red');
+//             grid[y] = 'Yellow'
+//             console.log(grid[i])
+//             break;
+//         } else {
+//         grid[x] !== 'blue';
+//             return;
+//             //console.log(grid[0])
+//         }
+//     }
+// });
 
-for (let i = grid.length -1; grid >= 0; i--) {
-    if (grid[y] = null) {
-        grid[y] = 'Yellow'
-        console.log(grid[y])
-        break;
-    } else {
-        grid[x] = 'Blue'
-        console.log(grid[x])
-    }
-}
 
 
 
