@@ -1,5 +1,5 @@
 //console.log('i\'m connected');
-//solution is inspired from class work on tic tac toe.
+//part of solution is inspired from class work on tic tac toe. https://git.generalassemb.ly/seir-9-21/student-resources/tree/master/8_hw_solutions/w03d03/solution
 //modal settings from class work https://git.generalassemb.ly/calmworld/student-resources/tree/master/1_front_end_development/w03d02/morning_exercise 
 //inserting animations is from animista.net
 //Michael Sturrus helped a lot with win condition functionality.
@@ -8,8 +8,8 @@
 
 
 
-//alert('Player 1: your token will be yellow!');
-//alert('Player 2: your token will be blue!');
+alert('Player 1: your token will be yellow!');
+alert('Player 2: your token will be blue!');
 
 
 /////////////////////////////////////////
@@ -195,6 +195,7 @@ const checkDraw = () => {
             }
         }
     }
+
     //if player hasn't been redirected to game board, it means all grids are full
     showModal('Tie game!');
     //set gameover to true;
