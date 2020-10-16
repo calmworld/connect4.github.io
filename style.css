@@ -155,28 +155,80 @@ a:active {
 /* styles for mobile */
 
 /* Portrait and Landscape */
-/* @media only screen 
+@media only screen 
   and (min-device-width: 375px) 
   and (max-device-width: 812px) { 
+  #container {
+      width: 317px;
+  }
+  
+  .square {
+      width: 40px;
+      height: 30px;
+  }
+
+   #msg {
+  width: 322px;
+  height: 65px;
+  }
+
+   #msg-text {
+      font-size: 23px;
+  }
+
+  #reset {
+  font-size: 20px;
+  width: 20%;
+}
 
 
-} */
+  #modal-textbox {
+      padding: 2px 25px;
+  }
+
+  #play-again {
+      padding: 2px 30px;
+  }
+
+}
 
 /* Portrait and Landscape */
 @media screen 
   and (max-width: 360px) 
   and (max-height: 640px) {
   #container {
-    width: 360px;
-    align-content: center;
+      width: 300px;
   }
   
   .square {
-    width: 2px;
-    height: 20px;
+      width: 40px;
+      height: 30px;
   }
+
+   #msg {
+  width: 305px;
+  height: 65px;
+  }
+
+   #msg-text {
+      font-size: 23px;
+  }
+
+  #reset {
+  font-size: 20px;
+  width: 20%;
 }
 
+
+  #modal-textbox {
+      padding: 2px 25px;
+  }
+
+  #play-again {
+      padding: 2px 30px;
+  }
+
+}
 
 
 
