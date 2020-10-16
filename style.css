@@ -168,10 +168,11 @@ a:active {
   and (max-height: 640px) {
   #container {
     width: 360px;
+    align-content: center;
   }
   
   .square {
-    width: auto;
+    width: 2px;
     height: 20px;
   }
 }
