@@ -1,8 +1,8 @@
 # calmworld.github.io
 
-connect 4 tokens of yellow or red horizontally, vertically, diagonally up, diagonally down.
+A 2 player game. Players can win by connecting 4 yellow tokens or red tokens horizontally, vertically, diagonally up, or diagonally down.
 
-vs code recommended
+vs code recommended.
 
-Google Chrome recommended
+Google Chrome recommended.
 
