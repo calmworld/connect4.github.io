@@ -157,17 +157,15 @@ a:active {
 /* Portrait and Landscape */
 /* @media only screen 
   and (min-device-width: 375px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
+  and (max-device-width: 812px) { 
 
 
 } */
 
 /* Portrait and Landscape */
 @media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 4) {
+  and (max-width: 360px) 
+  and (max-height: 640px) {
   #container {
     width: 360px;
   }
